@@ -16,9 +16,9 @@ public class GunController : NetworkBehaviour {
 	
 	void Update ()
     {
-        //if(isLocalPlayer)
-        //{
+        if(isLocalPlayer)
+        {
             gun.CheckIfShooting();
-        //}
+        }
     }
 }

@@ -18,7 +18,6 @@ public class PlayerNetworkSetup : NetworkBehaviour {
         {
             GameObject.Find("Scene Camera").SetActive(false);
             GetComponent<CharacterController>().enabled = true;
-            GetComponent<PlayerController>().enabled = true;
             FPSCharacterCam.enabled = true;
             audioListener.enabled = true;
             cameraLookScript.enabled = true;

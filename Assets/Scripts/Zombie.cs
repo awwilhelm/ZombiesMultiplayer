@@ -5,8 +5,9 @@ using System.Collections;
 public class Zombie : PlayerHealth {
 
 	// Use this for initialization
-	void Start ()
+	void OnEnable()
     {
+        PlayerHealthStart(isLocalPlayer);
         health = 150;
 	}
 	

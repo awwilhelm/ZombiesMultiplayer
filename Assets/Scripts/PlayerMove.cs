@@ -14,17 +14,13 @@ public class PlayerMove : NetworkBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private CharacterController controller;
 
-    void Awake()
+    protected void PlayerMoveStart()
     {
         controller = GetComponent<CharacterController>();
         GetComponent<Rigidbody>().isKinematic = true;
-        GetComponent<PlayerHealth>().enabled = true;
     }
-    void Start()
-    {
-    }
-
-    void FixedUpdate()
+    
+    public void PlayerMoveFixedUpdate()
     {
         if (controller.isGrounded)
         {
@@ -35,6 +31,9 @@ public class PlayerMove : NetworkBehaviour
                 moveDirection.y = jumpSpeed;
         }
         moveDirection.y -= gravity * Time.deltaTime;
-        controller.Move(moveDirection * Time.deltaTime);
+        if(controller != null && controller.enabled)
+        {
+            controller.Move(moveDirection * Time.deltaTime);
+        }
     }
 }

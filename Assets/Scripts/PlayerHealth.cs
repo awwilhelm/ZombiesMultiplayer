@@ -3,36 +3,29 @@ using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(PlayerMove))]
 public class PlayerHealth : PlayerMove {
 
     [SyncVar (hook = "OnHealthChange")]
     public int health = 100;
 
     private Text healthText;
+    private bool isThisLocalPlayer;
 	// Use this for initialization
-	void Awake () {
+	public void PlayerHealthStart (bool isLocal) {
+        PlayerMoveStart();
         healthText = GameObject.Find("HealthText").GetComponent<Text>();
-        print("text " + healthText == null);
-	}
 
-    void Start()
-    {
-        GetComponent<Human>().enabled = true;
-        //SetHealthText();
+        isThisLocalPlayer = isLocal;
     }
 
     public void SetHealthText()
     {
-        print("after");
-        if (isLocalPlayer)
+        if (isThisLocalPlayer)
         {
-            print(healthText == null);
             healthText.text =
                 "Health " 
                 + health.ToString(); 
         }
-        print("new health: " + health);
     }
 
     public void DeductHealth(int dmg)

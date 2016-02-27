@@ -13,17 +13,13 @@ public class Weapons : NetworkBehaviour {
 
     private RaycastHit hit;
 
-    void Awake()
+    protected void WeaponsStart()
     {
         camTransform = transform.FindChild("Player Camera");
     }
 
     public void CheckIfShooting()
     {
-        if (!isLocalPlayer)
-        {
-            return;
-        }
         if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
