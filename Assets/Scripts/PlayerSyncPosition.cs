@@ -52,12 +52,16 @@ public class PlayerSyncPosition : NetworkBehaviour {
 
     void LerpPosition()
     {
-        if(useHistoricLerping)
+        if (!PlayerNetworkSetup.IsLocal())
         {
-            HistoricalLerping();
-        } else
-        {
-            OrdinaryLerping();
+            if (useHistoricLerping)
+            {
+                HistoricalLerping();
+            }
+            else
+            {
+                OrdinaryLerping();
+            }
         }
 
     }
@@ -82,7 +86,10 @@ public class PlayerSyncPosition : NetworkBehaviour {
     void SyncPositionValues(Vector3 latestPos)
     {
         syncPos = latestPos;
-        syncPosList.Add(syncPos);
+        if (!PlayerNetworkSetup.IsLocal())
+        {
+            syncPosList.Add(syncPos);
+        }
     }
 
     void ShowLatency()

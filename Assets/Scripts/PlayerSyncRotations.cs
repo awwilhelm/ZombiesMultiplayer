@@ -42,12 +42,16 @@ public class PlayerSyncRotations : NetworkBehaviour {
     {
         //playerTransform.rotation = Quaternion.Lerp(playerTransform.rotation, syncPlayerRotation, Time.deltaTime * lerpRate);
         //camTransform.rotation = Quaternion.Lerp(camTransform.rotation, syncCamRotation, Time.deltaTime * lerpRate);
-        if(useHistoricalInterpolation)
+        if (!PlayerNetworkSetup.IsLocal())
         {
-            HistoricalInterpolation();
-        } else
-        {
-            OrdinaryLerping();
+            if (useHistoricalInterpolation)
+            {
+                HistoricalInterpolation();
+            }
+            else
+            {
+                OrdinaryLerping();
+            }
         }
     }
 

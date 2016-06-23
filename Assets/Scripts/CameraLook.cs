@@ -28,6 +28,6 @@ public class CameraLook : MonoBehaviour {
         currYRotation = Mathf.SmoothDamp(currYRotation, yRotation, ref yRotationV, lookSmoothDamp);
 
         transform.rotation = Quaternion.Euler(currXRotation, currYRotation, 0);
-        transform.parent.parent.rotation = Quaternion.Euler(0, currYRotation, 0);
+        transform.parent.rotation = Quaternion.Euler(0, currYRotation, 0);
     }
 }

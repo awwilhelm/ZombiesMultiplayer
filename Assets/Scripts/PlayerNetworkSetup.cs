@@ -20,12 +20,9 @@ public class PlayerNetworkSetup : NetworkBehaviour {
 
     void Start()
     {
-        print("Wake Wake");
         localPlayer = isLocalPlayer;
-        print(isLocalPlayer);
         if (isLocalPlayer)
         {
-            print("here");
             GameObject.Find("Scene Camera").SetActive(false);
             player.SetActive(true);
             //player.GetComponent<CharacterController>().enabled = true;

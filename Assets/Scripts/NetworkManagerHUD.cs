@@ -62,7 +62,7 @@ namespace UnityEngine.Networking
                 if (nC != null)
                 {
                     //currentConnection = nC.connection;
-                    print(nC.connection.connectionId);
+                    //print(nC.connection.connectionId);
                 }
             }
             if (NetworkServer.active && NetworkClient.active)
