@@ -22,8 +22,10 @@ public class PlayerMove : NetworkBehaviour
     
     public void PlayerMoveFixedUpdate()
     {
+        print("fixed update " + controller.isGrounded);
         if (controller.isGrounded)
         {
+            print("here");
             moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
             moveDirection = transform.TransformDirection(moveDirection);
             moveDirection *= speed;

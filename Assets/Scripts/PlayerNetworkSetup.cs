@@ -17,18 +17,7 @@ public class PlayerNetworkSetup : NetworkBehaviour {
     public GameObject player;
 
     private static bool localPlayer;
-	//void Start ()
- //   {
- //       if(isLocalPlayer)
- //       {
- //           print("here");
- //           GameObject.Find("Scene Camera").SetActive(false);
- //           GetComponent<CharacterController>().enabled = true;
- //           FPSCharacterCam.enabled = true;
- //           audioListener.enabled = true;
- //           cameraLookScript.enabled = true;
- //       }
-	//}
+
     void Start()
     {
         print("Wake Wake");

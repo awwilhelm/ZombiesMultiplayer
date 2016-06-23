@@ -7,7 +7,7 @@ public class Human : PlayerHealth {
 	// Use this for initialization
 	void Start ()
     {
-        PlayerHealthStart(isLocalPlayer);
+        PlayerHealthStart();
         health = 110;
         //GetComponent<PlayerHealth>().SetHealthText();
 	}

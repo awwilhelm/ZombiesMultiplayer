@@ -52,15 +52,12 @@ public class PlayerSyncPosition : NetworkBehaviour {
 
     void LerpPosition()
     {
-        if(!isLocalPlayer)
+        if(useHistoricLerping)
         {
-            if(useHistoricLerping)
-            {
-                HistoricalLerping();
-            } else
-            {
-                OrdinaryLerping();
-            }
+            HistoricalLerping();
+        } else
+        {
+            OrdinaryLerping();
         }
 
     }
@@ -74,7 +71,7 @@ public class PlayerSyncPosition : NetworkBehaviour {
     [ClientCallback]
     void TransmitPosition()
     {
-        if(isLocalPlayer && Vector3.Distance(myTransform.position, lastPos) > movementThreshhold)
+        if(Vector3.Distance(myTransform.position, lastPos) > movementThreshhold)
         {
             CmdProvidePositionToServer(myTransform.position);
             lastPos = myTransform.position;
@@ -85,23 +82,17 @@ public class PlayerSyncPosition : NetworkBehaviour {
     void SyncPositionValues(Vector3 latestPos)
     {
         syncPos = latestPos;
-        if(!isLocalPlayer)
-        {
-            syncPosList.Add(syncPos);
-        }
+        syncPosList.Add(syncPos);
     }
 
     void ShowLatency()
     {
-        if(isLocalPlayer)
-        {
-            //latency = nClient.GetRTT();
-            //latencyText.text = latency.ToString();
-            //if (syncPosList.Count > 10)
-            //{
-             //   latencyText.text = latency.ToString() + " " + syncPosList.Count;
-            //} else
-        }
+        //latency = nClient.GetRTT();
+        //latencyText.text = latency.ToString();
+        //if (syncPosList.Count > 10)
+        //{
+            //   latencyText.text = latency.ToString() + " " + syncPosList.Count;
+        //} else
     }
 
 

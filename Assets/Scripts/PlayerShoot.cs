@@ -25,11 +25,6 @@ public class PlayerShoot : NetworkBehaviour {
 
     void CheckIfShooting()
     {
-        if(!isLocalPlayer)
-        {
-            return;
-        }
-
         //if(Input.GetButton("Fire1"))
         if (Input.GetButtonDown("Fire1"))
         {

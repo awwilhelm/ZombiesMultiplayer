@@ -7,7 +7,7 @@ public class Zombie : PlayerHealth {
 	// Use this for initialization
 	void OnEnable()
     {
-        PlayerHealthStart(isLocalPlayer);
+        PlayerHealthStart();
         health = 150;
 	}
 	

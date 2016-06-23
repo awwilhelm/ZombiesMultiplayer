@@ -40,17 +40,14 @@ public class PlayerSyncRotations : NetworkBehaviour {
 
     void LerpRotations()
     {
-        if (!isLocalPlayer)
+        //playerTransform.rotation = Quaternion.Lerp(playerTransform.rotation, syncPlayerRotation, Time.deltaTime * lerpRate);
+        //camTransform.rotation = Quaternion.Lerp(camTransform.rotation, syncCamRotation, Time.deltaTime * lerpRate);
+        if(useHistoricalInterpolation)
         {
-            //playerTransform.rotation = Quaternion.Lerp(playerTransform.rotation, syncPlayerRotation, Time.deltaTime * lerpRate);
-            //camTransform.rotation = Quaternion.Lerp(camTransform.rotation, syncCamRotation, Time.deltaTime * lerpRate);
-            if(useHistoricalInterpolation)
-            {
-                HistoricalInterpolation();
-            } else
-            {
-                OrdinaryLerping();
-            }
+            HistoricalInterpolation();
+        } else
+        {
+            OrdinaryLerping();
         }
     }
 
@@ -106,15 +103,12 @@ public class PlayerSyncRotations : NetworkBehaviour {
     [ClientCallback]
     void TransmitRotations()
     {
-        if(isLocalPlayer)
+        //if (Quaternion.Angle(playerTransform.rotation, lastPlayerRot) > rotationThreshold || Quaternion.Angle(camTransform.rotation, lastCamRot) > rotationThreshold)
+        if(CheckIfBeyondThreshold(playerTransform.localEulerAngles.y, lastPlayerRot) || CheckIfBeyondThreshold(camTransform.localEulerAngles.x, lastCamRot))
         {
-            //if (Quaternion.Angle(playerTransform.rotation, lastPlayerRot) > rotationThreshold || Quaternion.Angle(camTransform.rotation, lastCamRot) > rotationThreshold)
-            if(CheckIfBeyondThreshold(playerTransform.localEulerAngles.y, lastPlayerRot) || CheckIfBeyondThreshold(camTransform.localEulerAngles.x, lastCamRot))
-            {
-                lastPlayerRot = playerTransform.localEulerAngles.y;
-                lastCamRot = camTransform.localEulerAngles.x;
-                CmdProvideRotationsToServer(lastPlayerRot, lastCamRot);
-            }
+            lastPlayerRot = playerTransform.localEulerAngles.y;
+            lastCamRot = camTransform.localEulerAngles.x;
+            CmdProvideRotationsToServer(lastPlayerRot, lastCamRot);
         }
     }
 
