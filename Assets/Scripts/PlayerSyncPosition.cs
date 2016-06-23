@@ -33,7 +33,7 @@ public class PlayerSyncPosition : NetworkBehaviour {
     void Start()
     {
         lerpRate = normalLerpRate;
-        nClient = GameObject.Find("NetworkManager").GetComponent<NetworkManager>().client;
+        //nClient = GameObject.Find("NetworkManager").GetComponent<NetworkManager>().client;
         latencyText = GameObject.Find("LatencyText").GetComponent<Text>();
     }
 
@@ -95,11 +95,11 @@ public class PlayerSyncPosition : NetworkBehaviour {
     {
         if(isLocalPlayer)
         {
-            latency = nClient.GetRTT();
+            //latency = nClient.GetRTT();
             //latencyText.text = latency.ToString();
             //if (syncPosList.Count > 10)
             //{
-                latencyText.text = latency.ToString() + " " + syncPosList.Count;
+             //   latencyText.text = latency.ToString() + " " + syncPosList.Count;
             //} else
         }
     }

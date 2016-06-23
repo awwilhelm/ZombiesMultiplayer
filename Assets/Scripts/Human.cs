@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(PlayerNetworkSetup))]
+
 public class Human : PlayerHealth {
     
 	// Use this for initialization

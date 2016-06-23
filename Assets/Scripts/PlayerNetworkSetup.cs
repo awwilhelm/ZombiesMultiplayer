@@ -12,16 +12,43 @@ public class PlayerNetworkSetup : NetworkBehaviour {
 
     [SerializeField]
     public CameraLook cameraLookScript;
-	void Start ()
+
+    [SerializeField]
+    public GameObject player;
+
+    private static bool localPlayer;
+	//void Start ()
+ //   {
+ //       if(isLocalPlayer)
+ //       {
+ //           print("here");
+ //           GameObject.Find("Scene Camera").SetActive(false);
+ //           GetComponent<CharacterController>().enabled = true;
+ //           FPSCharacterCam.enabled = true;
+ //           audioListener.enabled = true;
+ //           cameraLookScript.enabled = true;
+ //       }
+	//}
+    void Start()
     {
-        if(isLocalPlayer)
+        print("Wake Wake");
+        localPlayer = isLocalPlayer;
+        print(isLocalPlayer);
+        if (isLocalPlayer)
         {
+            print("here");
             GameObject.Find("Scene Camera").SetActive(false);
-            GetComponent<CharacterController>().enabled = true;
-            FPSCharacterCam.enabled = true;
-            audioListener.enabled = true;
-            cameraLookScript.enabled = true;
+            player.SetActive(true);
+            //player.GetComponent<CharacterController>().enabled = true;
+            //FPSCharacterCam.enabled = true;
+            //audioListener.enabled = true;
+            //cameraLookScript.enabled = true;
         }
-	}
+    }
+
+    public static bool IsLocal()
+    {
+        return localPlayer;
+    }
 	
 }
