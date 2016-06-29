@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class PlayerHealth : PlayerMove {
+public class PlayerHealth : NetworkBehaviour {
 
     [SyncVar (hook = "OnHealthChange")]
     public int health = 100;
@@ -11,11 +11,10 @@ public class PlayerHealth : PlayerMove {
     private Text healthText;
     private bool isThisLocalPlayer;
 	// Use this for initialization
-	public void PlayerHealthStart (bool isLocal) {
-        PlayerMoveStart();
+	public void Start () {
         healthText = GameObject.Find("HealthText").GetComponent<Text>();
 
-        isThisLocalPlayer = isLocal;
+        isThisLocalPlayer = isLocalPlayer;
     }
 
     public void SetHealthText()

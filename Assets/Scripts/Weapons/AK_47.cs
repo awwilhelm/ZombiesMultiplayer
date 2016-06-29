@@ -21,6 +21,9 @@ public class AK_47 : Weapons {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        if (isLocalPlayer)
+        {
+            CheckIfShooting();
+        }
+    }
 }

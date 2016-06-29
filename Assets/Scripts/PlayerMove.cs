@@ -14,13 +14,13 @@ public class PlayerMove : NetworkBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private CharacterController controller;
 
-    protected void PlayerMoveStart()
+    protected void Start()
     {
         controller = GetComponent<CharacterController>();
         GetComponent<Rigidbody>().isKinematic = true;
     }
     
-    public void PlayerMoveFixedUpdate()
+    void Update()
     {
         if (controller.isGrounded)
         {
